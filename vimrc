@@ -57,7 +57,7 @@ nnoremap el $
 
 " nm is <escape>
 inoremap nm <esc>
-noremap nm <esc>
+vnoremap nm <esc>
 
 " Insert enter in normal mode
 nnoremap <CR> i<Right><CR><esc>
