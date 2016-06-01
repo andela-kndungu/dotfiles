@@ -21,8 +21,8 @@ Plugin 'trusktr/seti.vim'
 " To easily browse files 
 Plugin 'scrooloose/nerdtree'
 
-" Better support for most lannguages 
-Plugin 'sheerun/vim-polyglot'
+" Better support for Javascript 
+Plugin 'pangloss/vim-javascript'
 
 " Colour JS based on scope
 Plugin 'bigfish/vim-js-context-coloring'
@@ -35,6 +35,12 @@ Plugin 'scrooloose/syntastic'
 
 " To autoformat JS, HTML and CSS
 Plugin 'maksimr/vim-jsbeautify'
+
+" Better JSX support
+Plugin 'mxw/vim-jsx'
+
+" Display indents
+Plugin 'Yggdroot/indentLine'
 
 " =================================Finish up==============================
 
@@ -103,6 +109,9 @@ nnoremap sc :JSContextColorToggle<CR>
 " Autoformat JS, HTML and CSS
 map <c-f> :call JsBeautify()<cr>
 
+" Show indent lines
+nnoremap in :IndentLinesToggle<CR>
+
 " ============================Configure Nerd Tree=========================
 
 " Show hidden files by default
@@ -131,6 +140,20 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+
+" =================Ensure 2 space indentation for JSX=====================
+
+" Use spaces instead of tabs for indentation 
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+" Turn on indentation by plugins (just to be sure)
+filetype plugin indent on
+
+" Apply these changes after all other plugins to ensure they are applied
+autocmd Filetype jsx setlocal ts=2 sw=2 expandtab
 
 " =============================================================================
 "                             MY COMMANDS 
