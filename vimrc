@@ -33,14 +33,29 @@ Plugin 'Valloric/YouCompleteMe'
 " For linting
 Plugin 'scrooloose/syntastic'
 
-" To autoformat JS, HTML and CSS
-Plugin 'maksimr/vim-jsbeautify'
-
 " Better JSX support
 Plugin 'mxw/vim-jsx'
 
 " Display indents
 Plugin 'Yggdroot/indentLine'
+
+" Insert or delete brackets, parens, quotes in pair 
+Plugin 'jiangmiao/auto-pairs'
+
+" Quick sorround with enclosures
+Plugin 'tpope/vim-surround'
+
+" Make JSON files look pretty 
+Plugin 'elzr/vim-json'
+
+" Easily toggle comments
+Plugin 'scrooloose/nerdcommenter'
+
+" Easily do Git stuff
+Plugin 'tpope/vim-fugitive'
+
+" Show Git diff
+Plugin 'airblade/vim-gitgutter'
 
 " =================================Finish up==============================
 
@@ -106,12 +121,29 @@ map <leader>s :up<CR>
 " Colour JS files based on scope
 nnoremap sc :JSContextColorToggle<CR>
 
-" Autoformat JS, HTML and CSS
-map <c-f> :call JsBeautify()<cr>
-
 " Show indent lines
 nnoremap in :IndentLinesToggle<CR>
 
+" Vertically split pane
+map <F9> :vsplit<CR>
+
+" Autoformat current file
+nnoremap <leader>f mkgg=G'k
+
+" Toggle comments
+map <leader>c :call NERDComment(0,"toggle")<CR>
+
+" View changed files from last commit
+map <leader>gs :Gstatus<CR>
+
+" Save and quit
+map <leader>wq :wq<CR>
+
+" Quit without saving
+map <leader>q :q!<CR>
+
+" Replace tabs with spaces
+map <leader>ts :%s/\t/  /g<CR>
 " ============================Configure Nerd Tree=========================
 
 " Show hidden files by default
@@ -141,6 +173,10 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+" ============================Configure Nerd Commenter====================
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " =================Ensure 2 space indentation for JSX=====================
 
@@ -148,12 +184,14 @@ highlight link SyntasticStyleWarningSign SignColumn
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
+set expandtab
 
 " Turn on indentation by plugins (just to be sure)
 filetype plugin indent on
 
 " Apply these changes after all other plugins to ensure they are applied
 autocmd Filetype jsx setlocal ts=2 sw=2 expandtab
+autocmd FileType javascript setlocal ts=2 sw=2 expandtab
 
 " =============================================================================
 "                             MY COMMANDS 
